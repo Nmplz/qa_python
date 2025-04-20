@@ -6,7 +6,9 @@ class TestBooksCollector:
     def test_add_new_book_add_two_books(self, collector):
         collector.add_new_book("Гордость и предубеждение и зомби")
         collector.add_new_book("Что делать, если ваш кот хочет вас убить")
-        assert len(collector.get_books_genre()) == 2
+        print(collector.books_genre)
+        print(len(collector.books_genre))
+        assert len(collector.books_genre) == 2
 
     def test_init_attributes_equals_to_predefined_true(self, collector):
         assert collector.books_genre == {}
