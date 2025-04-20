@@ -75,3 +75,19 @@ class TestBooksCollector:
         collector.delete_book_from_favorites(book_name)
         fav_list = collector.get_list_of_favorites_books()
         assert book_name not in fav_list
+
+    def test_get_books_genre_true(self, collector):
+        collector.add_new_book("Нейромант")
+        collector.set_book_genre("Нейромант", "Фантастика")
+        collector.add_new_book("Винни-Пух")
+        collector.set_book_genre("Винни-Пух", "Мультфильмы")
+        books_genre = collector.get_books_genre()
+        assert books_genre == {"Нейромант": "Фантастика", "Винни-Пух": "Мультфильмы"}
+
+    def test_get_list_of_favorites_books_true(self, collector):
+        collector.add_new_book("Нейромант")
+        collector.add_book_in_favorites("Нейромант")
+        collector.add_new_book("Винни-Пух")
+        collector.add_book_in_favorites("Винни-Пух")
+        fav_list = collector.get_list_of_favorites_books()
+        assert fav_list == ["Нейромант", "Винни-Пух"]
