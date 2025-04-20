@@ -31,12 +31,12 @@ class TestBooksCollector:
         assert book in collector.books_genre
 
     @pytest.mark.parametrize("book_name, book_genre", [["Дюна", "Фантастика"], ["Сияние", "Ужасы"], ["Собака Баскервилей", "Детективы"]])
-    def test_add_book_ganre_true(self, book_name, book_ganre, collector):
+    def test_add_book_ganre_true(self, book_name, book_genre, collector):
         collector.add_new_book(book_name)
-        collector.set_book_genre(book_name, book_ganre)
-        assert collector.get_book_genre(book_name) == book_ganre, f"Жанр книги не соответствует ожидаемому : {book_ganre}"
+        collector.set_book_genre(book_name, book_genre)
+        assert collector.get_book_genre(book_name) == book_genre, f"Жанр книги не соответствует ожидаемому : {book_genre}"
 
-    @pytest.mark.parametrize("book_name, book_genre", ["Кладбище домашних животных", "МегаУжасы"])
+    @pytest.mark.parametrize("book_name, book_genre", [["Кладбище домашних животных", "МегаУжасы"]])
     def test_add_book_invalid_ganre_false(self, book_name, book_genre, collector):
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, book_genre)
@@ -53,7 +53,6 @@ class TestBooksCollector:
         collector.add_new_book("Гарри Поттер")
         collector.set_book_genre("Гарри Поттер", "Фантастика")
         books = collector.get_books_for_children()
-        assert books.get_books_genre() == {"Гарри Поттер": "Фантастика"}
         assert "Гарри Поттер" in books
 
     def test_get_books_for_children_false(self, collector):
